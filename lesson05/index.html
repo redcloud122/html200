@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+
+  <title>Bank Application</title>
+</head>
+<body>
+  <h1>Welcome to Java Bank!</h1>
+
+  <button onclick="promptForAction()">Start Banking</button>
+
+  <script>
+    const actionDescription = 'Enter a letter (Q, W, D, or B):\nQ to quit\nW to withdraw\nD to deposit\nB to view balance';
+
+    let action;
+    let balance = 0;
+
+    function promptForAction() {
+      do {
+        action = prompt(actionDescription);
+        action = action.toUpperCase();
+
+        switch(action) {
+          case 'Q': {
+            return;
+            break;
+          }
+          case 'W': {
+            let amountToWithdraw = prompt('Enter an amount to withdraw:');
+
+            if (Number(amountToWithdraw) <= balance) {
+              balance -= Number(amountToWithdraw);
+            }
+            else {
+              alert('Insufficient funds.');
+            }
+
+            break;
+          }
+          case 'D': {
+            let amountToDeposit = prompt('Enter an amount to deposit:');
+
+            if (Number(amountToDeposit) > 0) {
+              balance += Number(amountToDeposit);
+            }
+            else {
+              alert('Invalid deposit amount');
+            }
+
+            break;
+          }
+          case 'B': {
+            alert('Your account balance is: ' + balance);
+            break;
+          }
+          default: {
+            alert('Your input is invalid.  Try again.');
+          }
+        }
+      } while (action !== 'Q');
+    }
+  </script>
+</body>
+</html>
